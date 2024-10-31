@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>配置中心</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .dynamic-field {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .dynamic-field input[type="text"] {
+      width: 65%;
+    }
+    .add-param {
+      background-color: #4caf50;
+      color: white;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .add-param:hover {
+      background-color: #45a049;
+    }
+    .save-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .save-btn:hover {
+      background-color: #1976d2;
+    }
+    .message {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #dff0d8;
+      color: #3c763d;
+      border: 1px solid #d6e9c6;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 14px;
+    }
+  .delete-button {
+        background-color: transparent; /* 背景透明 */
+        border: none; /* 无边框 */
+        cursor: pointer; /* 鼠标悬停时显示手形光标 */
+        color: #ff4d4d; /* 图标颜色 */
+        font-size: 18px; /* 图标大小 */
+        padding: 0; /* 无内边距 */
+    }
+
+    .delete-button:hover {
+        color: #ff0000; /* 悬停时改变颜色 */
+        transform: scale(1.1); /* 悬停时放大 */
+        transition: all 0.2s ease; /* 过渡效果 */
+    }
+
+    .delete-button::before {
+        content: "✖"; /* 使用 Unicode 字符表示叉叉 */
+        font-size: 20px; /* 字符大小 */
+        display: inline-block; /* 让字符正常显示 */
+    }
+  </style>
+</head>
+<body>
+  <h1>配置中心</h1>
+  
+  <div class="section">
+    <h2>翻译设置</h2>
+    
+    <label for="apiSelection">选择翻译 API</label>
+    <select id="apiSelection">
+      <option value="youdao">有道</option>
+      <option value="baidu">百度</option>
+    </select>
+    
+    <div id="customParamsContainer">
+      <!-- 自定义凭证参数输入框 -->
+    </div>
+    
+    <button class="add-param" id="addParamButton">添加凭证参数</button>
+    <button class="save-btn" id="saveSettings">保存设置</button>
+    <div class="message" id="messageBox">设置已保存！</div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

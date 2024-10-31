@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "MyTranslator",
+    "version": "1.0",
+    "description": "Automatically translate selected text.",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "clipboardRead",
+        "clipboardWrite",
+        "storage"
+    ],
+    "options_page": "options.html",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}

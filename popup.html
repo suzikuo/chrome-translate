@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>翻译插件</title>
+  <style>
+    body {
+      width: 150px;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .switch-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .switch-label {
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #4caf50;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    .manage-button {
+      margin-top: 15px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #fff;
+      background-color: #4caf50;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .manage-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>翻译插件</h2>
+  <div class="switch-container">
+    <label class="switch">
+      <input type="checkbox" id="featureToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+  <button class="manage-button" id="openSettings">管理面板</button>
+  <script src="popup.js"></script>
+</body>
+</html>
