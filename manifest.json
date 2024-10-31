@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "MyTranslator",
+    "name": "Translator",
     "version": "1.0",
     "description": "Automatically translate selected text.",
     "permissions": [

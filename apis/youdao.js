@@ -7,7 +7,7 @@ async function YouDaoFanyi(text, timeout = 10000) { // 默认超时为 10 秒
         const response = await fetchWithTimeout(url, { method: 'GET' }, timeout);
 
         if (!response.ok) {
-            throw new Error("Network response was not ok");
+            return "请求失败";
         }
 
         const data = await response.json();

@@ -53,7 +53,7 @@ async function BaiDuFanyi(query, timeout = 3000) {
         const response = await fetchWithTimeout(requestUrl, { method: 'GET' }, timeout);
 
         if (!response.ok) {
-            throw new Error('网络错误');
+            return "请求失败"
         }
 
         const data = await response.json();

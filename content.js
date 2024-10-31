@@ -1,11 +1,12 @@
 // 是否开启插件
 let isEnabled = false;
-
+let buttonPlace;
 // 初始化设置
 (function featureEnabled() {
     // 从存储中获取设置
-    chrome.storage.sync.get("featureEnabled", (data) => {
+    chrome.storage.sync.get(["featureEnabled","buttonParams"], (data) => {
         isEnabled = data.featureEnabled || false;
+        buttonPlace = data.buttonParams;
     });
 })()
 
@@ -13,7 +14,10 @@ let isEnabled = false;
 // 监听设置变化
 chrome.storage.onChanged.addListener((changes, namespace) => {
     if (changes.featureEnabled) {
-        isEnabled = changes.featureEnabled.newValue; // 获取新值
+        isEnabled = changes.featureEnabled.newValue;
+    };
+    if (changes.buttonParams) {
+        buttonPlace = changes.buttonParams.newValue;
     }
 });
 
@@ -105,10 +109,7 @@ document.addEventListener("mouseup", (event) => {
     if (event.target === translationBox) return;
     // 如果有选中的文本
     if (window.getSelection().toString().trim()) {
-        // 定位按钮到鼠标位置上方
-        translateButton.style.top = `${window.scrollY + event.clientY - 50}px`; // 考虑滚动位置
-        translateButton.style.left = `${event.clientX - (translateButton.offsetWidth / 2)}px`; // 中心对齐
-        translateButton.style.display = "block"; // 显示翻译按钮
+        ShowtranslateButton(event)
     }
     else {
         // 如果没有选中文本，隐藏按钮
@@ -132,3 +133,24 @@ document.addEventListener("mousedown", (event) => {
         translationBox.style.display = "none";
     };
 });
+
+
+function ShowtranslateButton(event) {
+    let translateButton = GetMytranslateButton();
+    switch (buttonPlace) {
+        case "left_top":
+            const range = window.getSelection().getRangeAt(0); // 获取选中的第一个 Range
+            const rect = range.getBoundingClientRect(); // 获取选中区域的边界矩形
+
+            // 将按钮定位在选中区域的左上角
+            translateButton.style.top = `${window.scrollY + rect.top - 40}px`; // 考虑滚动位置
+            translateButton.style.left = `${window.scrollX + rect.left}px`; // 考虑滚动位置
+            break;
+        default:
+            // 定位按钮到鼠标位置上方
+            translateButton.style.top = `${window.scrollY + event.clientY - 50}px`; // 考虑滚动位置
+            translateButton.style.left = `${event.clientX - (translateButton.offsetWidth / 2)}px`; // 中心对齐
+            break;
+        }
+    translateButton.style.display = "block"; // 显示翻译按钮
+}
